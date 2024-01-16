@@ -5,7 +5,9 @@ export default function Nav() {
   return (
     <nav {...stylex.props(styles.nav)}>
       <div>
-        <h1 {...stylex.props(styles.title)}>로그인/회원가입 연습</h1>
+        <Link href={"/"} {...stylex.props(styles.link)}>
+          <h1 {...stylex.props(styles.title)}>로그인/회원가입 연습</h1>
+        </Link>
       </div>
       <div {...stylex.props(styles.linkContainer)}>
         <div>
@@ -34,6 +36,7 @@ const styles = stylex.create({
   title: {
     fontSize: "20px",
     margin: 0,
+    color: "black",
   },
   linkContainer: {
     display: "flex",
@@ -43,5 +46,6 @@ const styles = stylex.create({
     textDecorationColor: "none",
     textDecorationLine: "none",
     textDecoration: "none",
+    color: "inherit",
   },
 });

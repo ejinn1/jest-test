@@ -1,9 +1,5 @@
-import Nav from "./_component/nav";
+import Main from "./_component/main";
 
 export default function Home() {
-  return (
-    <main>
-      <Nav />
-    </main>
-  );
+  return <Main />;
 }
