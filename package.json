@@ -9,7 +9,11 @@
     "lint": "next lint",
     "test": "jest --watchAll"
   },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix"
+  },
   "dependencies": {
+    "@stylexjs/stylex": "^0.4.1",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
@@ -22,11 +26,16 @@
     "ts-jest": "^29.1.1"
   },
   "devDependencies": {
+    "@stylexjs/babel-plugin": "^0.4.1",
+    "@stylexjs/eslint-plugin": "^0.4.1",
+    "@stylexjs/nextjs-plugin": "^0.4.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "typescript": "^5"
   }
 }
