@@ -1,4 +1,4 @@
-import { connecDB } from "@/util/database";
+import { connectDB } from "@/util/database";
 import * as stylex from "@stylexjs/stylex";
 import { ObjectId } from "mongodb";
 import Link from "next/link";
@@ -12,7 +12,7 @@ interface User {
 }
 
 export default async function Main() {
-  const db = (await connecDB).db("test");
+  const db = (await connectDB).db("test");
   let userList: User[] = await db.collection<User>("user").find().toArray();
   console.log(userList);
 
@@ -22,7 +22,7 @@ export default async function Main() {
         <Link href={"/signup"} {...stylex.props(styles.button, styles.link)}>
           회원가입 버튼
         </Link>
-        <Link href={"login"} {...stylex.props(styles.button, styles.link)}>
+        <Link href={"/login"} {...stylex.props(styles.button, styles.link)}>
           로그인 버튼
         </Link>
       </div>
