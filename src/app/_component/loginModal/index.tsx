@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 
 export default function LoginModal() {
-  const [id, setId] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setId(e.target.value);
+    setUsername(e.target.value);
   };
   const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
     setPassword(e.target.value);
@@ -20,9 +20,27 @@ export default function LoginModal() {
     router.back();
   };
 
-  const onSubmitForm: FormEventHandler = (e) => {
+  const onSubmitForm: FormEventHandler = async (e) => {
     e.preventDefault();
-    console.log(id, password);
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("로그인 성공", data);
+      } else {
+        console.log("로그인 실패");
+      }
+    } catch (error) {
+      console.error("로그인 요청 오류", error);
+    }
   };
 
   return (
@@ -35,7 +53,11 @@ export default function LoginModal() {
           <h1>로그인</h1>
         </div>
         <div {...stylex.props(styles.modalMain)}>
-          <form {...stylex.props(styles.form)} onSubmit={onSubmitForm}>
+          <form
+            {...stylex.props(styles.form)}
+            onSubmit={onSubmitForm}
+            method="POST"
+          >
             <div {...stylex.props(styles.modalBody)}>
               <div {...stylex.props(styles.inputDiv)}>
                 <label {...stylex.props(styles.inputLabel)} htmlFor="id">
@@ -43,17 +65,19 @@ export default function LoginModal() {
                 </label>
                 <input
                   {...stylex.props(styles.input)}
-                  value={id}
+                  id="id"
+                  value={username}
                   onChange={onChangeId}
                   placeholder={`login@example.com`}
                 />
               </div>
               <div {...stylex.props(styles.inputDiv)}>
-                <label {...stylex.props(styles.inputLabel)} htmlFor="id">
+                <label {...stylex.props(styles.inputLabel)} htmlFor="password">
                   비밀번호
                 </label>
                 <input
                   {...stylex.props(styles.input)}
+                  id="password"
                   value={password}
                   onChange={onChangePassword}
                   placeholder="8글자 이상, 특수문자 하나 이상"
@@ -73,7 +97,7 @@ export default function LoginModal() {
 const styles = stylex.create({
   modalBackgroud: {
     width: "100vw",
-    height: "100%",
+    height: "100vh",
     display: "flex",
     justifyContent: "center",
     position: "absolute",
@@ -81,7 +105,7 @@ const styles = stylex.create({
     top: 0,
     left: 0,
     right: 0,
-    bottim: 0,
+    bottom: 0,
   },
   modal: {
     backgroundColor: "white",
@@ -92,7 +116,7 @@ const styles = stylex.create({
     borderRadius: "12px",
     display: "flex",
     flexDirection: "column",
-    height: " 450px",
+    height: "450px",
   },
   modalHeader: {
     display: "flex",
