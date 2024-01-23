@@ -13,9 +13,11 @@ interface User {
 
 export default async function Main() {
   const db = (await connectDB).db("test");
-  let userList: User[] = await db.collection<User>("user").find().toArray();
-  console.log(userList);
-
+  const users: User[] = await db.collection<User>("user").find().toArray();
+  const userList = users.map((user) => ({
+    ...user,
+    _id: user._id.toString(),
+  }));
   return (
     <main {...stylex.props(styles.main)}>
       <div {...stylex.props(styles.buttonContainer)}>

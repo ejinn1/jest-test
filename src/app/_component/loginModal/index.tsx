@@ -128,7 +128,7 @@ const styles = stylex.create({
   closeButton: {
     position: "absolute",
     fontSize: "16px",
-    fontWeight: "600",
+    fontWeight: 600,
     top: "20px",
     left: "20px",
     width: "28px",
@@ -165,16 +165,15 @@ const styles = stylex.create({
   inputLabel: {
     width: "100%",
     fontSize: "20px",
-    fontWeight: "700",
+    fontWeight: 700,
   },
   input: {
-    width: "100%",
     padding: "10px 0 5px 0",
-    border: "0",
+    border: 0,
     borderBottom: "1px solid black",
     outlineWidth: "0",
     fontSize: "18px",
-    fontWeight: "400",
+    fontWeight: 400,
   },
   modalFooter: {
     position: "absolute",
@@ -195,7 +194,7 @@ const styles = stylex.create({
     border: 0,
     color: "white",
     fontSize: "20px",
-    fontWeight: "600",
+    fontWeight: 600,
     cursor: "pointer",
   },
 });

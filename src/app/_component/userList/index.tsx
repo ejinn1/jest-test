@@ -1,10 +1,9 @@
 "use client";
 
-import { ObjectId } from "mongodb";
 import { useState } from "react";
 
 interface User {
-  _id: ObjectId;
+  _id: string;
   name: string;
   username: string;
   password: string;
