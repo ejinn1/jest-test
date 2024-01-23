@@ -27,8 +27,6 @@ export default function Nav() {
 
 const styles = stylex.create({
   nav: {
-    width: "100vw",
-    height: "40px",
     borderBottom: "1px solid black",
     padding: "15px",
     display: "flex",
